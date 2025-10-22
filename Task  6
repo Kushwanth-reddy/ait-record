@@ -1,0 +1,141 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Kushwanth-reddy/ait-record/blob/main/Task%20%206\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "vwnNlNIEwoZ8"
+      },
+      "source": [
+        "To learn more about accelerating pandas on Colab, see the [10 minute guide](https://colab.research.google.com/github/rapidsai-community/showcase/blob/main/getting_started_tutorials/cudf_pandas_colab_demo.ipynb) or\n",
+        " [US stock market data analysis demo](https://colab.research.google.com/github/rapidsai-community/showcase/blob/main/getting_started_tutorials/cudf_pandas_stocks_demo.ipynb)."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "OwuxHmxllTwN"
+      },
+      "source": [
+        "<div class=\"markdown-google-sans\">\n",
+        "\n",
+        "## Machine learning\n",
+        "</div>\n",
+        "\n",
+        "With Colab you can import an image dataset, train an image classifier on it, and evaluate the model, all in just [a few lines of code](https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/quickstart/beginner.ipynb)."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ufxBm1yRnruN"
+      },
+      "source": [
+        "Colab is used extensively in the machine learning community with applications including:\n",
+        "- Getting started with TensorFlow\n",
+        "- Developing and training neural networks\n",
+        "- Experimenting with TPUs\n",
+        "- Disseminating AI research\n",
+        "- Creating tutorials\n",
+        "\n",
+        "To see sample Colab notebooks that demonstrate machine learning applications, see the [machine learning examples](#machine-learning-examples) below."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Graph:\n",
+        "    def __init__(self, vertices):\n",
+        "        self.v = vertices\n",
+        "        self.graph = [[0 for column in range(vertices)] for row in range(vertices)]\n",
+        "\n",
+        "    # A utility function to check if the current color assignment is safe for vertex v\n",
+        "    def is_safe(self, v, color, c):\n",
+        "        for i in range(self.v):\n",
+        "            if self.graph[v][i] == 1 and color[i] == c:\n",
+        "                return False\n",
+        "        return True\n",
+        "\n",
+        "    # A recursive utility function to solve m-coloring problem\n",
+        "    def graph_color_util(self, m, color, v):\n",
+        "        if v == self.v:\n",
+        "            return True\n",
+        "\n",
+        "        for c in range(1, m + 1):\n",
+        "            if self.is_safe(v, color, c):\n",
+        "                color[v] = c\n",
+        "                if self.graph_color_util(m, color, v + 1):\n",
+        "                    return True\n",
+        "                color[v] = 0  # backtrack\n",
+        "        return False\n",
+        "\n",
+        "    def graph_coloring(self, m):\n",
+        "        color = [0] * self.v\n",
+        "        if not self.graph_color_util(m, color, 0):\n",
+        "            print(\"No solution exists\")\n",
+        "            return False\n",
+        "        # Print the solution\n",
+        "        print(\"Solution exists and following are the assigned colors:\")\n",
+        "        for c in color:\n",
+        "            print(c, end=\" \")\n",
+        "        print()\n",
+        "        return True\n",
+        "\n",
+        "# Driver Code\n",
+        "if __name__ == '__main__':\n",
+        "    g = Graph(4)\n",
+        "    g.graph = [\n",
+        "        [0, 1, 1, 1],\n",
+        "        [1, 0, 1, 0],\n",
+        "        [1, 1, 0, 1],\n",
+        "        [1, 0, 1, 0]\n",
+        "    ]\n",
+        "    m = 3\n",
+        "    # Function call\n",
+        "    g.graph_coloring(m)\n",
+        "\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xyBZg4h7TVaj",
+        "outputId": "0d632ab0-d539-4670-f301-8f2b26541a44"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Solution exists and following are the assigned colors:\n",
+            "1 2 3 2 \n"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "toc_visible": true,
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
