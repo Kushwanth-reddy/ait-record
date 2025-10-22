@@ -1,0 +1,105 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Kushwanth-reddy/ait-record/blob/main/Task%207\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def move(subject, x1, x2):\n",
+        "    return f\"Move {subject} from {x1} to {x2}\"\n",
+        "\n",
+        "def push_box(x1, x2):\n",
+        "    return f\"Push box from {x1} to {x2}\"\n",
+        "\n",
+        "def climb_box(x, direction):\n",
+        "    return f\"Climb box at {x} {direction}\"\n",
+        "\n",
+        "def have_banana(x):\n",
+        "    return f\"Have banana at {x}\"\n",
+        "\n",
+        "# Initial State\n",
+        "initial_state = {\n",
+        "    'monkeyAt0': True,\n",
+        "    'monkeyLevel': 'Down',\n",
+        "    'bananaAt1': True,\n",
+        "    'boxAt2': True\n",
+        "}\n",
+        "\n",
+        "# Goal State\n",
+        "goal_state = {\n",
+        "    'GetBanana': True,\n",
+        "    'at': 1\n",
+        "}\n",
+        "\n",
+        "# Planning Algorithm\n",
+        "def plan_actions(initial_state, goal_state):\n",
+        "    actions = []\n",
+        "\n",
+        "    # If monkey is not at the box position, move it there first\n",
+        "    if initial_state['monkeyAt0'] and initial_state['boxAt2']:\n",
+        "        actions.append(move('Monkey', 0, 2))\n",
+        "\n",
+        "    # Push the box from position 2 to 1 (where the banana is)\n",
+        "    actions.append(push_box(2, 1))\n",
+        "\n",
+        "    # Climb the box at position 1\n",
+        "    actions.append(climb_box(1, 'Up'))\n",
+        "\n",
+        "    # Monkey now has banana at position 1\n",
+        "    actions.append(have_banana(1))\n",
+        "\n",
+        "    return actions\n",
+        "\n",
+        "# Execute the planning algorithm\n",
+        "actions = plan_actions(initial_state, goal_state)\n",
+        "\n",
+        "# Print the actions in the plan\n",
+        "print(\"Plan:\")\n",
+        "for action in actions:\n",
+        "    print(action)\n"
+      ],
+      "metadata": {
+        "id": "xyBZg4h7TVaj",
+        "outputId": "b261f18a-ce49-43c1-e760-037bce05a449",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Plan:\n",
+            "Move Monkey from 0 to 2\n",
+            "Push box from 2 to 1\n",
+            "Climb box at 1 Up\n",
+            "Have banana at 1\n"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "toc_visible": true,
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
