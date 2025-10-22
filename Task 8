@@ -1,0 +1,114 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Kushwanth-reddy/ait-record/blob/main/Task%208\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "N = 4\n",
+        "\n",
+        "def printSolution(board):\n",
+        "    for i in range(N):\n",
+        "        for j in range(N):\n",
+        "            if board[i][j] == 1:\n",
+        "                print(\"Q\", end=\" \")\n",
+        "            else:\n",
+        "                print(\".\", end=\" \")\n",
+        "        print()\n",
+        "\n",
+        "def isSafe(board, row, col):\n",
+        "    # Check this row on left side\n",
+        "    for i in range(col):\n",
+        "        if board[row][i] == 1:\n",
+        "            return False\n",
+        "\n",
+        "    # Check upper diagonal on left side\n",
+        "    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):\n",
+        "        if board[i][j] == 1:\n",
+        "            return False\n",
+        "\n",
+        "    # Check lower diagonal on left side\n",
+        "    for i, j in zip(range(row, N, 1), range(col, -1, -1)):\n",
+        "        if board[i][j] == 1:\n",
+        "            return False\n",
+        "\n",
+        "    return True\n",
+        "\n",
+        "def solveNQUtil(board, col):\n",
+        "    # Base case: If all queens are placed\n",
+        "    if col >= N:\n",
+        "        return True\n",
+        "\n",
+        "    # Consider this column and try placing\n",
+        "    # this queen in all rows one by one\n",
+        "    for i in range(N):\n",
+        "        if isSafe(board, i, col):\n",
+        "            # Place this queen in board[i][col]\n",
+        "            board[i][col] = 1\n",
+        "\n",
+        "            if solveNQUtil(board, col + 1):\n",
+        "                return True\n",
+        "\n",
+        "            # Backtrack\n",
+        "            board[i][col] = 0\n",
+        "\n",
+        "    return False\n",
+        "\n",
+        "def solveNQ():\n",
+        "    board = [[0 for _ in range(N)] for _ in range(N)]\n",
+        "\n",
+        "    if not solveNQUtil(board, 0):\n",
+        "        print(\"Solution does not exist\")\n",
+        "        return False\n",
+        "\n",
+        "    printSolution(board)\n",
+        "    return True\n",
+        "\n",
+        "# Driver Code\n",
+        "if __name__ == '__main__':\n",
+        "    solveNQ()\n"
+      ],
+      "metadata": {
+        "id": "1_JaZV8hS5sE",
+        "outputId": "9485f6a7-31dc-4b63-8b2b-c9842437a423",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            ". . Q . \n",
+            "Q . . . \n",
+            ". . . Q \n",
+            ". Q . . \n"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "toc_visible": true,
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
