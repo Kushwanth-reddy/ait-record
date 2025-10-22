@@ -1,0 +1,86 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Kushwanth-reddy/ait-record/blob/main/Task%2010\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Define a list of facts\n",
+        "facts = [\n",
+        "    \"john_is_cold.\",               # john is cold\n",
+        "    \"raining.\",                    # it is raining\n",
+        "    \"john_Forgot_His_Raincoat.\",  # john forgot his raincoat\n",
+        "    \"fred_lost_his_car_keys.\",    # fred lost his car keys\n",
+        "    \"peter_footballer.\"           # peter plays football\n",
+        "]\n",
+        "\n",
+        "# Function to check if a fact is true\n",
+        "def verify_fact(fact):\n",
+        "    # Remove the trailing period\n",
+        "    fact = fact.rstrip(\".\")\n",
+        "\n",
+        "    # Perform some logic to verify the fact\n",
+        "    if fact == \"john_Forgot_His_Raincoat\":\n",
+        "        return True\n",
+        "    elif fact == \"raining\":\n",
+        "        return True\n",
+        "    elif fact == \"foggy\":\n",
+        "        return True\n",
+        "    elif fact == \"Cloudy\":\n",
+        "        return False  # Assume it's not cloudy\n",
+        "    else:\n",
+        "        return False\n",
+        "\n",
+        "# Verify each fact\n",
+        "for fact in facts:\n",
+        "    if verify_fact(fact):\n",
+        "        print(f\"{fact} - Yes\")\n",
+        "    else:\n",
+        "        print(f\"{fact} - No\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ENx-hbNwQxxa",
+        "outputId": "88c62e89-268a-49d0-d38d-06fab944b3a7"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "john_is_cold. - No\n",
+            "raining. - Yes\n",
+            "john_Forgot_His_Raincoat. - Yes\n",
+            "fred_lost_his_car_keys. - No\n",
+            "peter_footballer. - No\n"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "name": "Welcome To Colab",
+      "toc_visible": true,
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
